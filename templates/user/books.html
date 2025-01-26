@@ -25,7 +25,7 @@
                         <div class="card-body">
                             <h5 class="card-title">{{ book.title }}</h5>
                             <p class="card-text">
-                                Genre: {{ book.get_genre_display }}<br>
+                                Genre: {{ book.genre }}<br>
                                 Price: ${{ book.price }}
                             </p>
                             {% if user.is_staff or user.is_superuser %}
