@@ -52,12 +52,18 @@ A comprehensive web application for managing a book library with web scraping ca
    pip install -r requirements.txt
    ```
 
-4. Create the admin and superadmin
+4. Make migrations
+   ```bash
+   python manage.py makemigrations
+   python manage.py migrate
+   ```
+
+5. Create the admin and superadmin
    ```bash
    python create_users.py
    ```
 
-5. Run the application
+6. Run the application
    ```bash
    python manage.py runserver
    ```
