@@ -1,0 +1,46 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="container">
+    <h2>Book Scraping</h2>
+    
+    <form method="post" class="mb-4">
+        {% csrf_token %}
+        <div class="row">
+            <div class="col-md-6">
+                <select name="category" class="form-control" required>
+                    <option value="">Select a Category</option>
+                    {% for category in categories %}
+                        <option value="{{ category.name }}">{{ category.name }}</option>
+                    {% endfor %}
+                </select>
+            </div>
+            <div class="col-md-6">
+                <button type="submit" class="btn btn-primary">Scrape Books</button>
+            </div>
+        </div>
+    </form>
+
+    {% if scraped_books %}
+        <div class="alert alert-success">
+            Scraped {{ scraped_books|length }} books in the {{ selected_category }} category
+        </div>
+
+        <div class="row">
+            {% for book in scraped_books %}
+                <div class="col-md-4 mb-3">
+                    <div class="card">
+                        <div class="card-body">
+                            <h5 class="card-title">{{ book.title }}</h5>
+                            <p class="card-text">
+                                Genre: {{ book.genre }}<br>
+                                Price: ${{ book.price|floatformat:2 }}
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+    {% endif %}
+</div>
+{% endblock %}

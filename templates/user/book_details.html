@@ -1,0 +1,60 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="container mt-4">
+    <div class="row">
+        <div class="col-md-8 offset-md-2">
+            <div class="card">
+                <div class="card-header bg-primary text-white">
+                    <h2 class="mb-0">{{ book.title }}</h2>
+                </div>
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-md-8">
+                            <h4 class="card-title">Book Details</h4>
+                            <table class="table table-borderless">
+                                <tbody>
+                                    <tr>
+                                        <th scope="row">Title</th>
+                                        <td>{{ book.title }}</td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row">Genre</th>
+                                        <td>{{ book.genre }}</td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row">Price</th>
+                                        <td>${{ book.price }}</td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row">Added On</th>
+                                        <td>{{ book.created_at|date:"F d, Y" }}</td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row">Last Updated</th>
+                                        <td>{{ book.updated_at|date:"F d, Y" }}</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+
+                            {% if book.description %}
+                            <h4 class="mt-3">Description</h4>
+                            <p class="card-text">{{ book.description }}</p>
+                            {% endif %}
+                        </div>
+                        <div class="col-md-4 text-center">
+                            <div class="book-actions mt-3">
+                                <a href="{% url 'books' %}" class="btn btn-secondary w-100">
+                                    <i class="fas fa-arrow-left"></i> Back to Book List
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="card-footer text-muted">
+                    <small>Book added to library on {{ book.created_at|date:"F d, Y" }}</small>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
